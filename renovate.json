@@ -1,0 +1,56 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+
+  "extends": [
+    "config:recommended",
+    ":semanticCommits",
+    ":dependencyDashboard",
+    ":maintainLockFilesWeekly"
+  ],
+
+  "timezone": "Europe/Prague",
+  "schedule": ["before 4am on monday"],
+
+  "packageManager": "pnpm",
+  "rangeStrategy": "bump",
+
+  "labels": ["dependencies"],
+
+  "prConcurrentLimit": 4,
+  "prHourlyLimit": 2,
+
+  "ignoreDeps": ["node"],
+
+  "lockFileMaintenance": {
+    "enabled": true,
+    "schedule": ["before 4am on monday"]
+  },
+
+  "packageRules": [
+    {
+      "matchPackageNames": ["next", "react", "react-dom"],
+      "groupName": "next & react",
+      "automerge": false
+    },
+    {
+      "matchPackagePatterns": ["^@types/"],
+      "groupName": "type definitions",
+      "automerge": true
+    },
+    {
+      "matchDepTypes": ["devDependencies"],
+      "matchUpdateTypes": ["patch"],
+      "groupName": "dev dependencies (patch)",
+      "automerge": true
+    },
+    {
+      "matchUpdateTypes": ["patch"],
+      "groupName": "patch updates",
+      "automerge": true
+    },
+    {
+      "matchUpdateTypes": ["major"],
+      "dependencyDashboardApproval": true
+    }
+  ]
+}
