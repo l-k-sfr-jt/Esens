@@ -3,6 +3,13 @@ import '../app/globals.css';
 
 const preview: Preview = {
   parameters: {
+    backgrounds: {
+      options: {
+        // 👇 Default options
+        dark: { name: 'Dark', value: '#2e2a24' },
+        light: { name: 'Light', value: '#2e2a24' },
+      },
+    },
     controls: {
       matchers: {
         color: /(background|color)$/i,
@@ -16,6 +23,10 @@ const preview: Preview = {
       // 'off' - skip a11y checks entirely
       test: 'todo',
     },
+  },
+  initialGlobals: {
+    // 👇 Set the initial background color
+    backgrounds: { value: 'light' },
   },
 };
 
