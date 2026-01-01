@@ -36,8 +36,9 @@ export default defineConfig({
         extends: true,
         test: {
           name: 'convex',
-          include: ['convex/__tests__/**/*.test.ts'],
-          environment: 'node',
+          include: ['convex/**/*.test.ts'],
+          environment: 'edge-runtime',
+          server: { deps: { inline: ['convex-test'] } },
         },
       },
     ],

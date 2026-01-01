@@ -1,4 +1,5 @@
-import React, { ChangeEvent, FocusEvent, useId } from 'react';
+import type { ChangeEvent, FocusEvent } from 'react';
+import React, { useId } from 'react';
 import { clsx } from 'clsx';
 
 export interface InputFieldProps {
@@ -34,7 +35,7 @@ export function InputField({
       <div className="flex justify-between gap-2">
         <label className="text-white" htmlFor={inputId}>
           {label}
-          {isRequired && <span aria-hidden={true}>*</span>}
+          {isRequired && <span aria-hidden>*</span>}
         </label>
         {errorMessage && (
           <p id={`error${randomId}`} className="text-red-400 text-right">

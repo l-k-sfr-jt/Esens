@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-export const apartmentTypeEnum = z.enum(["1+KK", "2+KK", "3+KK", "4+KK"]);
+export const apartmentTypeEnum = z.enum(['1+KK', '2+KK', '3+KK', '4+KK']);
 
 export const contactFormSchema = z.object({
   firstName: z
@@ -21,5 +21,5 @@ export const contactFormSchema = z.object({
   email: z.string().email('Zadejte platnou e-mailovou adresu').min(1, 'E-mail je povinný'),
   message: z.string().max(2000, 'Zpráva může mít maximálně 2000 znaků'),
   apartmentType: z.array(apartmentTypeEnum),
-  newsletter: z.boolean()
+  newsletter: z.boolean(),
 });

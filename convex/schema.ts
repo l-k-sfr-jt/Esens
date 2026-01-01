@@ -1,10 +1,9 @@
-// convex/leads.ts
-import { mutation } from './_generated/server';
+// convex/schema.ts
+import { defineSchema, defineTable } from 'convex/server';
 import { v } from 'convex/values';
-import type { Lead } from '@/app/domain/Lead';
 
-export const create = mutation({
-  args: {
+export default defineSchema({
+  leads: defineTable({
     firstName: v.string(),
     lastName: v.string(),
     phone: v.string(),
@@ -14,11 +13,6 @@ export const create = mutation({
       v.array(v.union(v.literal('1+KK'), v.literal('2+KK'), v.literal('3+KK'), v.literal('4+KK')))
     ),
     newsletter: v.boolean(),
-  },
-  handler: async (ctx, args: Lead) => {
-    await ctx.db.insert('leads', {
-      ...args,
-      createdAt: Date.now(),
-    });
-  },
+    createdAt: v.number(),
+  }).index('by_createdAt', ['createdAt']),
 });

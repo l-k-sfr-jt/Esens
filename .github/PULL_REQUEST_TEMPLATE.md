@@ -6,9 +6,6 @@
 
 - [ ] `pnpm verify` successfully completes.
 
-
 ## References
 
 - FYI: @person1, @person2
-
-

@@ -1,11 +1,13 @@
 import { convexTest } from 'convex-test';
 import { expect, test, describe } from 'vitest';
-import { api } from '../_generated/api';
-import {ApartmentType} from "@/app/domain/ApartmentType";
+import { api } from './_generated/api';
+import type { ApartmentType } from '@/app/domain/ApartmentType';
+import schema from './schema';
+const modules = import.meta.glob('./**/*.ts');
 
 describe('Convex Leads Backend', () => {
   test('should create a lead with all required fields', async () => {
-    const t = convexTest();
+    const t = convexTest(schema, modules);
 
     const leadData = {
       firstName: 'Jan',
@@ -40,7 +42,7 @@ describe('Convex Leads Backend', () => {
   });
 
   test('should create a lead without apartment type (optional field)', async () => {
-    const t = convexTest();
+    const t = convexTest(schema, modules);
 
     const leadData = {
       firstName: 'Eva',
@@ -67,11 +69,11 @@ describe('Convex Leads Backend', () => {
       message: 'Chtěla bych více informací',
       newsletter: false,
     });
-    expect(leads[0].apartmentType).toBeUndefined();
+    expect(leads[0].apartmentType).toEqual([]);
   });
 
   test('should create a lead with multiple apartment types', async () => {
-    const t = convexTest();
+    const t = convexTest(schema, modules);
 
     const leadData = {
       firstName: 'Petr',
@@ -94,7 +96,7 @@ describe('Convex Leads Backend', () => {
   });
 
   test('should create multiple leads and maintain separate records', async () => {
-    const t = convexTest();
+    const t = convexTest(schema, modules);
 
     const lead1 = {
       firstName: 'Jan',
@@ -129,7 +131,7 @@ describe('Convex Leads Backend', () => {
   });
 
   test('should store createdAt timestamp correctly', async () => {
-    const t = convexTest();
+    const t = convexTest(schema, modules);
 
     const beforeCreate = Date.now();
 
@@ -155,7 +157,7 @@ describe('Convex Leads Backend', () => {
   });
 
   test('should accept all valid apartment type values', async () => {
-    const t = convexTest();
+    const t = convexTest(schema, modules);
 
     const validTypes = ['1+KK', '2+KK', '3+KK', '4+KK'] as const;
 
@@ -183,7 +185,7 @@ describe('Convex Leads Backend', () => {
   });
 
   test('should handle empty message', async () => {
-    const t = convexTest();
+    const t = convexTest(schema, modules);
 
     await t.mutation(api.leads.create, {
       firstName: 'Jan',
@@ -204,7 +206,7 @@ describe('Convex Leads Backend', () => {
   });
 
   test('should handle newsletter subscription correctly', async () => {
-    const t = convexTest();
+    const t = convexTest(schema, modules);
 
     // Create lead with newsletter = true
     await t.mutation(api.leads.create, {
