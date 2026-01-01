@@ -53,6 +53,7 @@
     "@types/react-dom": "^19",
     "@vitest/browser-playwright": "^4.0.16",
     "@vitest/coverage-v8": "^4.0.16",
+    "chromatic": "^13.3.4",
     "convex-test": "^0.0.41",
     "eslint": "^9",
     "eslint-config-next": "16.0.10",
