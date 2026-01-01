@@ -1,26 +1,66 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --primary: #2e2a24;
+  --accent: #e2b162;
+  --creamy: #e8dfd3;
+  --creamy2: #bbaf9f;
+  --gray: #808080;
+  --danger: #ff6060;
+  --green: #363a2b;
+  --wrapper-padding-inline: 1.25rem;
+  --wrapper-max-width: 81rem;
+  --wrapper-with-image: minmax(var(--wrapper-padding-inline), 1fr)
+    minmax(0, var(--wrapper-max-width)) minmax(var(--wrapper-padding-inline), 1fr);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@theme {
+  --color-primary: var(--primary);
+  --color-accent: var(--accent);
+  --color-red-400: var(--danger);
+  --color-neutral-50: var(--creamy);
+  --color-neutral-100: var(--creamy2);
+  --color-gray-400: var(--gray);
+  --color-green-400: var(--green);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+  --text-hero: 9.5rem;
+  --text-xs--line-height: 1.3;
+  --text-lg--line-height: 1.55;
+  --text-base--line-height: 1.55;
+  --text-5xl: 3.25rem;
+  --text-5xl--line-height: 1.05;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  html {
+    @apply text-neutral-50;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-sans), serif;
+  }
+}
+
+@layer utilities {
+  .wrapper {
+    max-width: var(--wrapper-max-width);
+    margin-inline: auto;
+    padding-inline: var(--wrapper-padding-inline);
+  }
+  .rtl {
+    direction: rtl;
+  }
+
+  .ltr {
+    direction: ltr;
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-mono), Helvetica, sans-serif;
 }

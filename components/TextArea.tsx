@@ -1,4 +1,5 @@
-import {ChangeEvent, FocusEvent, useId} from 'react';
+import type { ChangeEvent, FocusEvent } from 'react';
+import { useId } from 'react';
 
 interface TextAreaProps {
   label: string;
@@ -33,7 +34,7 @@ export function TextArea({
       <div className="flex justify-between gap-2">
         <label htmlFor={inputId} className="text-white">
           {label}
-          {isRequired && <span aria-hidden={true}>*</span>}
+          {isRequired && <span aria-hidden>*</span>}
         </label>
         {errorMessage && (
           <p id={`error${randomId}`} className="text-red-400 text-right">
