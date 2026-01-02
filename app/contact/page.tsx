@@ -1,22 +1,29 @@
 import Image from 'next/image';
 import { Footer } from '@/components/Footer';
 import { Form } from '@/app/contact/Form';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Esens Letná | Kontakt',
+};
 
 export default function Page() {
   return (
     <>
-      <header className="wrapper grid grid-cols-1 lg:grid-rows-[auto_128px]">
-        <h1 className="text-5xl lg:text-hero tracking-tighter text-accent pb-19 lg:pb-0 lg:col-span-full lg:row-start-1 lg:row-end-3">
+      <header className="wrapper grid grid-cols-1 xl:grid-rows-[auto_128px]">
+        <h1 className="text-5xl lg:text-9xl xl:text-hero tracking-tighter text-accent pb-19 lg:pb-10 xl:pb-0 lg:col-span-full lg:row-start-1 lg:row-end-3">
           Nepropásněte{' '}
-          <span className="text-white lg:block ps-5 lg:ps-0 lg:indent-[7ch]">život</span>
-          <span className="text-white lg:block lg:indent-[7ch]"> na Letné</span>
+          <span className="text-white lg:block ps-5 lg:ps-0 lg:indent-[5ch] xl:indent-[7ch]">
+            život
+          </span>
+          <span className="text-white lg:block lg:indent-[5ch] xl:indent-[7ch]"> na Letné</span>
         </h1>
-        <p className="max-w-[53ch] lg:col-span-full lg:self-end lg:row-start-2 lg:row-end-3 lg:-translate-y-1/4">
+        <p className="max-w-[53ch] lg:col-span-full lg:self-end xl:row-start-2 xl:row-end-3 lg:-translate-y-1/4">
           Máte otázky nebo si chcete domluvit osobní setkání? Obraťte se na nás a my vám rádi
           odpovíme na vše, co vás zajímá.
         </p>
       </header>
-      <main className="relative overflow-x-clip grid grid-cols-(--wrapper-with-image) pt-8 lg:pt-40">
+      <main className="relative overflow-x-clip grid grid-cols-(--wrapper-with-image) pt-8 lg:pt-30 xl:pt-40">
         <div className="col-start-2 col-end-3 grid lg:grid-cols-[minmax(0,31rem)_minmax(0,1fr)] lg:gap-37 gap-20">
           <Form />
           <div className="flex flex-col gap-2 lg:gap-6 items-end lg:items-start overflow-hidden">

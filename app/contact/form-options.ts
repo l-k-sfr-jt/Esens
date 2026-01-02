@@ -14,7 +14,7 @@ export const formOpts = formOptions({
   },
   defaultProps: {},
   validationLogic: revalidateLogic({
-    mode: 'blur',
+    mode: 'submit',
     modeAfterSubmission: 'change',
   }),
   validators: {
