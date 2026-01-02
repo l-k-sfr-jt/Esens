@@ -188,7 +188,7 @@ export function Form() {
                 className="pb-6"
                 label="O jaký byt máte zájem?"
                 onChange={(vals) => field.setValue(vals)}
-                value={field.state.value || []}
+                value={field.state.value}
                 options={[
                   { value: '1+KK', label: '1+KK' },
                   { value: '2+KK', label: '2+KK' },

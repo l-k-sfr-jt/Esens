@@ -10,7 +10,7 @@ interface CheckboxOption<T extends string = string> {
 interface ApartmentTypeSelectorProps {
   label: string;
   options: CheckboxOption<ApartmentType>[];
-  value?: ApartmentType[];
+  value: ApartmentType[];
   onChange?: (values: ApartmentType[]) => void;
   onBlur?: (e: FocusEvent) => void;
   className?: string;
@@ -20,7 +20,7 @@ export function ApartmentTypeSelector({
   className,
   label,
   options,
-  value = [],
+  value,
   onChange,
   onBlur,
 }: ApartmentTypeSelectorProps) {
@@ -41,7 +41,7 @@ export function ApartmentTypeSelector({
           <div key={index}>
             <input
               type="checkbox"
-              name={`apartmentType.${index}`}
+              name="apartmentType"
               value={optionValue}
               id={optionValue}
               checked={value.includes(optionValue)}
