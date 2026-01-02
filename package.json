@@ -18,11 +18,16 @@
     "test:convex": "vitest run --project=convex",
     "test:all": "npm run test:frontend && npm run test:backend",
     "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage"
+    "test:coverage": "jest --coverage",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:e2e:debug": "playwright test --debug",
+    "playwright:install": "playwright install --with-deps chromium"
   },
   "dependencies": {
     "@edge-runtime/vm": "^5.0.0",
     "@jest/globals": "^30.2.0",
+    "@playwright/test": "^1.57.0",
     "@sentry/nextjs": "^10.32.1",
     "@tanstack/react-form": "^1.27.5",
     "@tanstack/react-form-nextjs": "^1.27.5",

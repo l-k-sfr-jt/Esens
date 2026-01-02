@@ -1,5 +1,5 @@
 // convex/leads.ts
-import { mutation } from './_generated/server';
+import { mutation, query } from './_generated/server';
 import { v } from 'convex/values';
 import type { Lead } from '@/app/domain/Lead';
 
@@ -20,5 +20,18 @@ export const create = mutation({
       ...args,
       createdAt: Date.now(),
     });
+  },
+});
+
+export const getByEmail = query({
+  args: {
+    email: v.string(),
+  },
+  handler: async (ctx, args) => {
+    return await ctx.db
+      .query('leads')
+      .filter((q) => q.eq(q.field('email'), args.email))
+      .order('desc')
+      .first();
   },
 });

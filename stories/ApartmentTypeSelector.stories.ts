@@ -20,6 +20,7 @@ type Story = StoryObj<typeof meta>;
 export const Primary: Story = {
   args: {
     label: 'O jaký byt máte zájem?`',
+    value: ['2+KK'],
     options: [
       { label: '1+KK', value: '1+KK' },
       { label: '2+KK', value: '2+KK' },

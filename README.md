@@ -35,4 +35,57 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
+## Testing
+
+### Unit Tests
+
+Run frontend unit tests:
+
+```bash
+pnpm test:frontend
+```
+
+Run Convex backend tests:
+
+```bash
+pnpm test:convex
+```
+
+Run all tests:
+
+```bash
+pnpm test:all
+```
+
+### End-to-End Tests
+
+This project includes comprehensive E2E tests using Playwright that run automatically on PR creation against Vercel preview deployments.
+
+Run E2E tests locally:
+
+```bash
+# Start dev server first
+pnpm dev
+
+# In another terminal, run tests
+pnpm test:e2e
+
+# Or run with UI mode for debugging
+pnpm test:e2e:ui
+```
+
+**E2E Test Features:**
+
+- ✅ Tests contact form submission
+- ✅ Verifies data storage in Convex
+- ✅ Validates form validation
+- ✅ Runs automatically on PR creation
+- ✅ Tests against Vercel preview deployments
+
+For detailed E2E testing setup and configuration, see [E2E_TESTING_SETUP.md](./E2E_TESTING_SETUP.md).
+
+**Required GitHub Secrets for E2E Tests:**
+
+- `NEXT_PUBLIC_CONVEX_URL` - Your Convex deployment URL
+
 # Esens
