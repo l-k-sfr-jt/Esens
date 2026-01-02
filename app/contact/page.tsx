@@ -1,6 +1,11 @@
 import Image from 'next/image';
 import { Footer } from '@/components/Footer';
 import { Form } from '@/app/contact/Form';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Esens Letná | Kontakt',
+};
 
 export default function Page() {
   return (

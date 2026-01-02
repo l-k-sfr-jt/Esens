@@ -53,7 +53,7 @@ export function InputField({
         onChange={onChange}
         onBlur={onBlur}
         className={clsx(
-          'p-3 rounded-sm border-neutral-50 border text-neutral-50 placeholder:text-gray-400 hover:cursor-pointer hover:bg-white hover:text-gray-400 focus:text-gray-400 focus:bg-white',
+          'p-3 rounded-sm max-h-13 border-neutral-50 border self-end text-neutral-50 placeholder:text-gray-400 hover:cursor-pointer hover:bg-white hover:text-gray-400 focus:text-gray-400 focus:bg-white',
           { 'border-red-400': hasError }
         )}
       />
