@@ -6,9 +6,10 @@ import { Button } from '@/components/Button';
 import { ApartmentTypeSelector } from '@/components/ApartmentTypeSelector';
 import { initialFormState, mergeForm, useForm, useTransform } from '@tanstack/react-form-nextjs';
 import { formOpts } from '@/app/contact/form-options';
-import { useActionState } from 'react';
+import { useActionState, useEffect } from 'react';
 import { submitContactForm } from '@/app/contact/actions';
 import { Checkbox } from '@/components/Checkbox';
+import * as Sentry from '@sentry/nextjs';
 
 export function Form() {
   const [state, action, isLoading] = useActionState(submitContactForm, initialFormState);
@@ -21,11 +22,55 @@ export function Form() {
     transform: useTransform((baseForm) => mergeForm(baseForm, state!), [state]),
   });
 
+  // Log form initialization
+  useEffect(() => {
+    Sentry.addBreadcrumb({
+      category: 'form',
+      message: 'Contact form component mounted',
+      level: 'info',
+    });
+  }, []);
+
+  // Log form state changes
+  useEffect(() => {
+    if (isSuccess) {
+      Sentry.addBreadcrumb({
+        category: 'form',
+        message: 'Form submission successful',
+        level: 'info',
+      });
+    }
+
+    if (serverErrors) {
+      Sentry.captureMessage('Form submission failed with server error', {
+        level: 'error',
+        extra: {
+          serverError: serverErrors,
+          formState: {
+            hasValues: !!state.values,
+            errorCount: state.errors.length,
+          },
+        },
+        tags: {
+          formType: 'contact',
+          errorLocation: 'client',
+        },
+      });
+    }
+  }, [isSuccess, serverErrors, state.values, state.errors.length]);
+
   return (
     <form
       aria-label="Kontaktní formulář"
       action={action}
-      onSubmit={() => form.handleSubmit()}
+      onSubmit={() => {
+        Sentry.addBreadcrumb({
+          category: 'form',
+          message: 'Form submit button clicked',
+          level: 'info',
+        });
+        form.handleSubmit();
+      }}
       className="grid lg:grid-cols-2 lg:gap-y-4 gap-y-5 gap-x-5"
     >
       <form.Field name="firstName">
