@@ -17,7 +17,7 @@ Sentry.init({
   sendDefaultPii: true,
 
   // Sanitize sensitive data before sending to Sentry
-  beforeSend(event, hint) {
+  beforeSend(event) {
     // Sanitize form data in extra context
     if (event.extra) {
       // Sanitize email addresses
