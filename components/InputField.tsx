@@ -32,18 +32,24 @@ export function InputField({
   const inputId = id ?? randomId;
   return (
     <div className="grid gap-3">
-      <div className="flex justify-between gap-2">
-        <label className="text-white" htmlFor={inputId}>
+      <div className="flex justify-between gap-1">
+        <label className="text-white flex gap-1" htmlFor={inputId}>
           {label}
-          {isRequired && <span aria-hidden>*</span>}
+          {isRequired && (
+            <abbr title="required" className="no-underline">
+              *
+            </abbr>
+          )}
         </label>
         {errorMessage && (
-          <p id={`error${randomId}`} className="text-red-400 text-right">
+          <p id={`error_${randomId}`} className="text-red-400 text-right">
             {errorMessage}
           </p>
         )}
       </div>
       <input
+        aria-invalid={hasError}
+        aria-errormessage={`error_${randomId}`}
         required={isRequired}
         id={inputId}
         name={name}

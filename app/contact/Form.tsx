@@ -237,7 +237,7 @@ export function Form() {
         </Button>
 
         {serverErrors && (
-          <p className="text-red-400 uppercase">
+          <p className="text-red-400 uppercase" role="alert">
             Něco se pokazilo. <br />
             Zkuste to prosím znovu.
           </p>
